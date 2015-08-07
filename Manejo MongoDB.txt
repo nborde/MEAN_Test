@@ -1,0 +1,38 @@
+
+
+
+// Manejando la Base de Datos Mongo. 
+
+1 - Levantar el server apuntando al folder donde tenemos la data. (C:\Users\nicolas.bordenave\WebstormProjects\Test_NodeJS\data)
+	E:\MongoDB\mongodb-win32-x86_64-2008plus-2.4.9\bin>mongod.exe --dbpath C:\Users\nicolas.bordenave\WebstormProjects\Test_NodeJS\data
+	
+	(E:\Angular_Dev\test_nodejs_mongodb\data)
+	E:\MongoDB\mongodb-win32-x86_64-2008plus-2.4.9\bin>mongod.exe -rest --dbpath E:\Angular_Dev\test_nodejs_mongodb\data
+
+2 - Levantar un cliente. Abrir una consola en el directorio \bin de la instalacion de Mongo. 
+		tipeando mongo deberiamos ver que se conecta a una base "test", si vemos esto y en la otra consola vemos la coneccion. Estamos OK.
+		
+3 - create database
+		use node_testjs
+
+4 - Insert data into collection.
+		db.usercollection.insert({"_id" : 1234,"username" : "nico","email" : "nborde@gmail.com"})
+		db.usercollection.insert({"username" : "nico2","email" : "nborde@gmail.com"})
+		
+		newstuff = [{ "username" : "testuser2", "email" : "testuser2@testdomain.com" }, { "username" : "testuser3", "email" : "testuser3@testdomain.com" }]
+		db.usercollection.insert(newstuff);
+
+5 - Find data from collection.
+		db.usercollection.find().pretty()
+
+		mongo
+		use mean_test;
+		show dbs;
+
+
+		db.employee.insert({"name" : "nico","salary" : "2500", "id":"1"})
+		db.employee.insert({"name" : "tato","salary" : "1000", "id":"2"})
+		db.employee.insert({"name" : "pedro","salary" : "6500", "id":"3"})
+		db.employee.find().pretty()
+
+		
