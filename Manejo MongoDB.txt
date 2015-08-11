@@ -7,7 +7,7 @@
 	E:\MongoDB\mongodb-win32-x86_64-2008plus-2.4.9\bin>mongod.exe --dbpath C:\Users\nicolas.bordenave\WebstormProjects\Test_NodeJS\data
 	
 	(E:\Angular_Dev\test_nodejs_mongodb\data)
-	E:\MongoDB\mongodb-win32-x86_64-2008plus-2.4.9\bin>mongod.exe -rest --dbpath E:\Angular_Dev\test_nodejs_mongodb\data
+	E:\MongoDB\mongodb-win32-x86_64-2008plus-2.4.9\bin>mongod.exe -rest --dbpath E:\Angular_Dev\MEAN_Test\data
 
 2 - Levantar un cliente. Abrir una consola en el directorio \bin de la instalacion de Mongo. 
 		tipeando mongo deberiamos ver que se conecta a una base "test", si vemos esto y en la otra consola vemos la coneccion. Estamos OK.
@@ -30,9 +30,9 @@
 		show dbs;
 
 
-		db.employee.insert({"name" : "nico","salary" : "2500", "id":"1"})
-		db.employee.insert({"name" : "tato","salary" : "1000", "id":"2"})
-		db.employee.insert({"name" : "pedro","salary" : "6500", "id":"3"})
+		db.employee.insert({"name" : "nico","salary" : "2500", "id":"1"});
+		db.employee.insert({"name" : "tato","salary" : "1000", "id":"2"});
+		db.employee.insert({"name" : "pedro","salary" : "6500", "id":"3"});
 		db.employee.find().pretty()
 
 		

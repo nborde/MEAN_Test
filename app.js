@@ -1,7 +1,43 @@
 var express = require('express'),
-app = express(),
+//app = express(),
 js2xmlparser = require("js2xmlparser");
 xml2js = require('xml2js');
+
+
+
+var employees = [
+	{ id: 1, name: 'Martin', salary: 1000 },
+	{ id: 2, name: 'Pablo', salary: 2000 },
+	{ id: 3, name: 'Federico', salary: 3500 },
+	{ id: 4, name: 'Santiago', salary: 2850 },
+	{ id: 5, name: 'Marcos', salary: 5500 }
+];
+
+var nextEmployeeId = employees.length + 1;
+
+var clients = [
+	{ id: 1, name: 'Martin', lastName: 'Perez' },
+	{ id: 2, name: 'Pablo', lastName: 'Lopez' },
+	{ id: 3, name: 'Federico', lastName: 'Rodriguez' },
+	{ id: 4, name: 'Santiago', lastName: 'Gonzalez' },
+	{ id: 5, name: 'Marcos', lastName: 'Alvarez' }
+];
+var nextClientId = employees.length + 1;
+
+// ************ DB Connection and model
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/mean_test', function(err) {
+	if(err) {
+		console.log('connection error', err);
+	} else {
+		console.log('connection successful');
+	}
+});
+
+var app = express();
+
+
 app.use(express.static(__dirname + '/public'));
 app.use(function(req, res, next) {
   req.rawBody = '';
@@ -32,37 +68,6 @@ app.use(function(err, req, res, next) {
 		message: err.message,
 		error: {}
 	});
-});
-
-
-var employees = [
-	{ id: 1, name: 'Martin', salary: 1000 },
-	{ id: 2, name: 'Pablo', salary: 2000 },
-	{ id: 3, name: 'Federico', salary: 3500 },
-	{ id: 4, name: 'Santiago', salary: 2850 },
-	{ id: 5, name: 'Marcos', salary: 5500 }
-];
-
-var nextEmployeeId = employees.length + 1;
-
-var clients = [
-	{ id: 1, name: 'Martin', lastName: 'Perez' },
-	{ id: 2, name: 'Pablo', lastName: 'Lopez' },
-	{ id: 3, name: 'Federico', lastName: 'Rodriguez' },
-	{ id: 4, name: 'Santiago', lastName: 'Gonzalez' },
-	{ id: 5, name: 'Marcos', lastName: 'Alvarez' }
-];
-var nextClientId = employees.length + 1;
-
-// ************ DB Connection and model
-
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/germanTest', function(err) {
-	if(err) {
-		console.log('connection error', err);
-	} else {
-		console.log('connection successful');
-	}
 });
 
 
