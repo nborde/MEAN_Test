@@ -1,5 +1,4 @@
 var express = require('express'),
-//app = express(),
 js2xmlparser = require("js2xmlparser");
 xml2js = require('xml2js');
 
@@ -39,6 +38,7 @@ var app = express();
 
 
 app.use(express.static(__dirname + '/public'));
+
 app.use(function(req, res, next) {
   req.rawBody = '';
   req.setEncoding('utf8');
@@ -75,60 +75,6 @@ app.use(function(err, req, res, next) {
 var employee = require('./api_routes/routes_employee');
 app.use('/employees', employee);
 // ******************************************************
-
-// GET /employees
-// Returns all employees
-app.get('/employees1', function (req, res) {
-	if(req.accepts('*/*')){
-		res.send('You have to specify what you accept from the server', 400);
-	}
-	else if(req.accepts('xml')){
-		res.type('xml');
-		var options = {
-			wrapArray: {
-				enabled: true,
-				elementName : 'Employee'
-			}
-		};
-		res.send(js2xmlparser("Employees", employees, options)); //we need the wrapArray options here to generate valid xml structure
-	}else if(req.accepts('json')){
-		res.json(employees); //res.send(JSON.stringify(employees)) works as well
-	}else{
-		res.send('Accept format not allowed', 406);
-	}
-});
-
-
-
-// GET /employees/:id
-// Rerturns a single employee by id
-app.get('/employees1/:id', function (req, res){
-	if(req.accepts('*/*')){
-		res.send('You have to specify what you accept from the server', 400);
-		return;
-	}
-
-	var employee;
-
-	for (var i = employees.length - 1; i >= 0; i--) {
-		if (employees[i].id == req.params.id) {
-			employee = employees[i];
-			break;
-		}
-	};
-
-	if (!employee) {
-		res.send('Error 404: No employee found', 404);
-	}
-	else if(req.accepts('xml')){
-		res.type('xml');
-		res.send(js2xmlparser("Employee", employee));
-	}else if(req.accepts('json')){
-		res.json(employee); //res.send(JSON.stringify(employees)) works as well
-	}else{
-		res.send('Accept format not allowed', 406);
-	}
-});
 
 // ******************************************************
 
